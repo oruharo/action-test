@@ -29,3 +29,31 @@ version-resolver:
 template: |
   ## Changes
   $CHANGES
+
+  ## Docker Images
+  [ghcr.io/cosmo-workspace/cosmo-controller-manager:v0.3.0](https://github.com/cosmo-workspace/cosmo/pkgs/container/cosmo-controller-manager/13139572?tag=v0.3.0)
+  [ghcr.io/cosmo-workspace/cosmo-dashboard:v0.3.0](https://github.com/cosmo-workspace/cosmo/pkgs/container/cosmo-dashboard/13139669?tag=v0.3.0)
+  [ghcr.io/cosmo-workspace/cosmo-auth-proxy:v0.3.0](https://github.com/cosmo-workspace/cosmo/pkgs/container/cosmo-auth-proxy/13139664?tag=v0.3.0)
+
+  ## How to install
+
+  See [GETTING-STARTED.md](https://github.com/cosmo-workspace/cosmo/blob/main/docs/GETTING-STARTED.md)
+
+  ## How to upgrade
+
+  ```sh
+  # update helm local repository
+  helm repo update
+
+  # get current values for cosmo-controller-manager 
+  helm get values cosmo-controller-manager -n cosmo-system | tail -n +2 > controller-manager.values.yaml
+
+  # get current values for cosmo-dashboard
+  helm get values cosmo-dashboard -n cosmo-system | tail -n +2 > dashboard.values.yaml
+
+  # upgrade cosmo-controller-manager
+  helm upgrade cosmo-controller-manager cosmo/cosmo-controller-manager -n cosmo-system --values controller-manager.values.yaml
+
+  # upgrade cosmo-dashboard
+  helm upgrade cosmo-dashboard cosmo/cosmo-dashboard -n cosmo-system --values dashboard.values.yaml
+  ```
