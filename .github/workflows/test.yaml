@@ -8,4 +8,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: test tets
-        run: printenv
+        run: printenv | sort
